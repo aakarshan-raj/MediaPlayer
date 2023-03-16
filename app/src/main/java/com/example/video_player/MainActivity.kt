@@ -12,7 +12,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val uri:Uri= Uri.parse("android.resource://"+packageName+"/"+"test")
+        val videoview:VideoView = findViewById(R.id.playVideoInThis)
+        val Controller = MediaController(this)
+        Controller.setAnchorView(videoview)
+        val uri:Uri = Uri.parse("android.resource://"+packageName+"/raw/"+"test")
 
+
+        videoview.setMediaController(Controller)
+        videoview.setVideoURI(uri)
+        videoview.requestFocus()
+        videoview.start()
     }
 }
